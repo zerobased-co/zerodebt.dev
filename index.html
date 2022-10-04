@@ -1,1 +1,426 @@
-ZERODEBT
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@1,900&family=Song+Myung&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard-dynamic-subset.css" />
+
+<style>
+body {
+  background: #eaecef;
+}
+
+div, p, span {
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
+    "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+span {
+  display: inline-block;
+}
+
+.title {
+  padding: 45px 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.title hgroup {
+  text-align: center;
+}
+
+.title h1 {
+  font-family: 'Song Myung', sans-serif;
+  letter-spacing: -0.025em;
+  font-size: 6em;
+  margin: 0;
+  word-break: keep-all;
+}
+
+.title p, .title span {
+  font-family: 'Song Myung', sans-serif;
+  font-size: 1.5em;
+}
+
+body {
+  display: flex;
+}
+
+.wrapper {
+  margin: auto;
+  max-width: 1600px;
+  width: 92%;
+}
+
+.episodes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  width: 480px;
+  color: var(--color);
+  --bgColor: hsl(var(--bg), 100%, 50%);
+  --bgColorLight: hsl(var(--bg), 100%, 65%);
+  --bgColorDark: hsl(var(--bg), 100%, 35%);
+
+  --bgColorA: hsla(var(--bg), 100%, 50%, 0.75);
+  --bgColorLightA: hsla(var(--bg), 100%, 65%, 0.75);
+  --bgColorDarkA: hsla(var(--bg), 100%, 35%, 0.75);
+
+  --angleAlter: calc(var(--angle) * -0.8);
+
+  background: linear-gradient(to bottom right, var(--bgColorLight), var(--bgColor));
+  box-shadow: 1px 1px 0 0.5px var(--bgColorDark), 3px 3px 6px 1px #00000080;
+
+  transform: rotateZ(var(--angle));
+
+  margin: 10px;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: all 0.25s;
+  position: relative;
+
+  cursor: pointer;
+  user-select: none;
+
+  font-weight: 200;
+}
+
+.card:hover {
+  box-shadow: 1px 1px 0 0.5px var(--bgColorDark), 3px 3px 4px 0px #00000060, 4px 4px 16px 5px #00000040;
+  transform: scale(1.05) rotateZ(var(--angleAlter));
+  z-index: 100;
+}
+
+.card:active {
+  transform: scale(1.03) rotateZ(var(--angleAlter));
+}
+
+.card .bar {
+  background: linear-gradient(to right, #e0e0e0, #d8d8d8);
+  width: 100%;
+  height: 50px;
+}
+
+.card .header, .card .bottom {
+  opacity: 0.32;
+  font-size: 0.5em;
+  text-shadow: -0.25px -0.25px 1px rgba(0, 0, 0, 0.5);
+  padding: 10px 0;
+}
+
+.card .header {
+  padding: 10px 20px;
+}
+
+.card .body {
+  width: 92%;
+  margin: 0 auto;
+  padding: 20px 0;
+
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+}
+
+.card .photo {
+  margin: 0;
+}
+
+.card .sticker {
+  width: 110px;
+  margin: 4px 16px;
+  position: relative;
+  display: block;
+}
+
+.card .layer {
+  background: black;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-size: 100%;
+  border-radius: 5px;
+}
+
+.card .specular {
+  mix-blend-mode: hard-light;
+  background-image: linear-gradient(90deg,#f09,#f80,#ff0,#0f8,#0cf,#c4f,#f09);
+  opacity: 0.75;
+}
+
+.card .mask {
+  mix-blend-mode: exclusion;
+  background-image: var(--mask);
+  opacity: 0.9;
+}
+
+.card .photo img {
+  width: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0.35px 0.35px 1.2px 0px #00000090;
+}
+
+.card .photo figcaption {
+  font-size: 0.65em;
+  text-align: center;
+  margin-top: 0.25em;
+  font-style: italic;
+  opacity: 0.7;
+}
+
+.card .body .desc {
+  margin: 0 10px;
+}
+
+.card .body .desc span {
+  font-size: 1.8em;
+  letter-spacing: -0.05em;
+}
+
+.card .body .desc strong {
+  font-weight: 600;
+}
+
+.card .bottom {
+  text-align: center;
+}
+
+#e01 {
+  --color: #01229f;
+  --bg: 160;
+  --angle: -2deg;
+  --photo: url("images/001.jpg");
+  --mask: url("images/mask1.jpg");
+}
+
+#e02 {
+  --color: #01229f;
+  --bg: 47;
+  --angle: 3deg;
+  --photo: url("images/002.jpg");
+  --mask: url("images/mask2.jpg");
+}
+
+#e03 {
+  --color: #ffffff;
+  --bg: 322;
+  --angle: -1.5deg;
+  --photo: url("images/003.jpg");
+  --mask: url("images/mask1.jpg");
+}
+
+#e04 {
+  --color: #ffffff;
+  --bg: 20;
+  --angle: 2.3deg;
+  --photo: url("images/004.jpg");
+  --mask: url("images/mask2.jpg");
+}
+
+#e05 {
+  --color: #ffffff;
+  --bg: 256;
+  --angle: -2.2deg;
+}
+
+@media screen and (max-width: 640px) {
+  body {
+    font-size: 14px;
+  }
+
+  .card {
+    background: linear-gradient(to bottom right, var(--bgColorLightA), var(--bgColorA)), var(--photo);
+    background-size: cover;
+  }
+
+  .card .bar {
+    display: none;
+  }
+
+  .card .desc {
+    padding-bottom: 50px;
+  }
+
+  .card .photo {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 640px) {
+  .wrapper {
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <div class="title">
+    <hgroup>
+      <h1>신용개발</h1>
+      <p>
+        <span>덮어놓고 긁다 보면</span>
+        <span>거지꼴을 못 면한다.</span>
+      </p>
+      <p>
+        <span>신기술만 쓰다 보면</span>
+        <span>기술부채 못 면한다.</span>
+      </p>
+    </hgroup>
+  </div>
+  <div class="episodes">
+    <div class="card episode" id="e01">
+      <div class="header" aria-hidden="true">
+      Twitter Korea Creator Program 2022
+      </div>
+      <div class="bar">&nbsp;</div>
+      <div class="body">
+        <figure class="photo">
+          <div class="sticker">
+            <img src="images/001.jpg" alt="Image of 001">
+            <div class="layer specular"><div class="layer mask"></div></div>
+          </div>
+          <figcaption>@winterwolf0412</figcaption>
+        </figure>
+        <div class="desc">
+          <span><strong>로토</strong>님과 함께 하는</span>
+          <span><strong>신용개발</strong> 스페이스 <strong>1화</strong></span>
+          <span>6월 22일 <strong>수요일 밤 11시</strong></span>
+        </div>
+      </div>
+      <div class="bottom" aria-hidden="true">
+        <span>과도한 기술 사용은 극심한 스트레스와</span>
+        <span>만성피로를 불러일으킬 수 있습니다.</span>
+        <span>분실 신고는 트위터에서 받지 않습니다.</span>
+      </div>
+    </div>
+    
+    <div class="card episode" id="e02">
+      <div class="header" aria-hidden="true">
+      Twitter Korea Creator Program 2022
+      </div>
+      <div class="bar">&nbsp;</div>
+      <div class="body">
+        <figure class="photo">
+          <div class="sticker">
+            <img src="images/002.jpg" alt="Image of 002">
+            <div class="layer specular"><div class="layer mask"></div></div>
+          </div>
+          <figcaption>@seojeee</figcaption>
+        </figure>
+        <div class="desc">
+          <span><strong>치즈</strong>님과 함께 하는</span>
+          <span><strong>신용개발</strong> 스페이스 <strong>2화</strong></span>
+          <span>6월 29일 <strong>수요일 밤 11시</strong></span>
+        </div>
+      </div>
+      <div class="bottom" aria-hidden="true">
+        과도한 기술 사용은 극심한 스트레스와<wbr>
+        만성피로를 불러일으킬 수 있습니다.<wbr>
+        분실 신고는 트위터에서 받지 않습니다.
+      </div>
+    </div>
+    
+    <div class="card episode" id="e03">
+      <div class="header" aria-hidden="true">
+      Twitter Korea Creator Program 2022
+      </div>
+      <div class="bar">&nbsp;</div>
+      <div class="body">
+        <figure class="photo">
+          <div class="sticker">
+            <img src="images/003.jpg" alt="Image of 003">
+            <div class="layer specular"><div class="layer mask"></div></div>
+          </div>
+          <figcaption>@velopert</figcaption>
+        </figure>
+        <div class="desc">
+          <span><strong>민준</strong>님&amp;<strong>강혁</strong>님과 함께 하는</span>
+          <span><strong>신용개발</strong> 스페이스 <strong>3화</strong></span>
+          <span>7월 6일 <strong>수요일 밤 11시</strong></span>
+        </div>
+      </div>
+      <div class="bottom" aria-hidden="true">
+        과도한 기술 사용은 극심한 스트레스와<wbr>
+        만성피로를 불러일으킬 수 있습니다.<wbr>
+        분실 신고는 트위터에서 받지 않습니다.
+      </div>
+    </div>
+    
+    <div class="card episode" id="e04">
+      <div class="header" aria-hidden="true">
+      Twitter Korea Creator Program 2022
+      </div>
+      <div class="bar">&nbsp;</div>
+      <div class="body">
+        <figure class="photo">
+          <div class="sticker">
+            <img src="images/004.jpg" alt="Image of 004">
+            <div class="layer specular"><div class="layer mask"></div></div>
+          </div>
+          <figcaption>@trustin</figcaption>
+        </figure>
+        <div class="desc">
+          <span><strong>희승</strong>님과 함께 하는</span>
+          <span><strong>신용개발</strong> 스페이스 <strong>4화</strong></span>
+          <span>7월 12일 <strong>화요일 밤 11시</strong></span>
+        </div>
+      </div>
+      <div class="bottom" aria-hidden="true">
+        과도한 기술 사용은 극심한 스트레스와<wbr>
+        만성피로를 불러일으킬 수 있습니다.<wbr>
+        분실 신고는 트위터에서 받지 않습니다.
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+const el = document.querySelector("body");
+const speculars = document.querySelectorAll(".specular");
+
+let scrollY = 0;
+let mouseX = 0;
+let mouseY = 0;
+let t = 0;
+
+function updateBackground() {
+  speculars.forEach((el) => {
+    el.style.backgroundPositionX = 
+      -t
+      -(mouseX/15.0)
+      +(mouseY/15.0)
+      -(scrollY/5.0)
+      +(el.parentElement.offsetLeft/15.0)
+      -(el.parentElement.offsetTop/15.0)
+      + "px";
+  });
+}
+
+setInterval(function() {
+  t += 1;
+  updateBackground();
+}, 50);
+
+window.addEventListener("scroll", (e) => {
+  scrollY = window.scrollY;
+  updateBackground();
+});
+
+el.addEventListener("mousemove", (e) => {
+  mouseX = e.screenX;
+  mouseY = e.screenY;
+  updateBackground();
+});
+
+</script>
+</body>
+</html>

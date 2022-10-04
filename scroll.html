@@ -1,0 +1,97 @@
+<html>
+<head>
+<style>
+
+.card {
+  position: relative;
+  display: inline-block;
+}
+
+.layer {
+  background: black;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-size: 100%;
+}
+
+.specular {
+  mix-blend-mode: overlay;
+  background-image: linear-gradient(90deg,#f09,#f80,#ff0,#0f8,#0cf,#c4f,#f09);
+  opacity: 0.8;
+}
+
+.mask {
+  mix-blend-mode: exclusion;
+  background-image: url("images/holo.jpg");
+  opacity: 0.95;
+}
+
+.empty {
+  height: 200px;
+}
+</style>
+
+<body>
+  <div class="card">
+    <img src="images/001.jpg">
+    <div class="specular layer">
+      <div class="mask layer"></div>
+    </div>
+  </div>
+  <div class="empty">
+  </div>
+  <div class="card">
+    <img src="images/001.jpg">
+    <div class="specular layer">
+      <div class="mask layer"></div>
+    </div>
+  </div>
+  <div class="empty">
+  </div>
+  <div class="card">
+    <img src="images/001.jpg">
+    <div class="specular layer">
+      <div class="mask layer"></div>
+    </div>
+  </div>
+  <div class="empty">
+  </div>
+  <div class="card">
+    <img src="images/001.jpg">
+    <div class="specular layer">
+      <div class="mask layer"></div>
+    </div>
+  </div>
+  <div class="empty">
+  </div>
+</body>
+<script>
+const el = document.querySelector("body");
+const cards = document.querySelectorAll(".specular");
+
+let scrollY = 0;
+let mouseX = 0;
+let mouseY = 0;
+
+function updateBackground() {
+  cards.forEach((card) => {
+    card.style.backgroundPositionX = - mouseX + mouseY - scrollY - card.parentElement.offsetTop + "px";
+  });
+}
+
+window.addEventListener("scroll", (e) => {
+  scrollY = window.scrollY;
+  updateBackground();
+});
+
+el.addEventListener("mousemove", (e) => {
+  mouseX = e.screenX;
+  mouseY = e.screenY;
+  updateBackground();
+});
+
+</script>
+</html>
